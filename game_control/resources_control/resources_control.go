@@ -29,6 +29,8 @@ type Resources struct {
 	listener *PacketListener
 	// constant 是常量数据包的简要记录实现
 	constant *ConstantPacket
+	// structureRequest 存放所有请求的回调函数
+	structureRequest *StructureRequestCallback
 }
 
 // NewResourcesControl 基于 client 创建一个新的资源中心。
@@ -46,6 +48,7 @@ func NewResourcesControl(client *client.Client) *Resources {
 		container: NewContainerManager(),
 		listener:  NewPacketListener(),
 		constant:  NewConstantPacket(),
+		structureRequest: NewStructureRequestCallback(),
 	}
 
 	for {
@@ -114,4 +117,9 @@ func (r *Resources) PacketListener() *PacketListener {
 // ConstantPacket 返回常量数据包的有关实现
 func (r *Resources) ConstantPacket() *ConstantPacket {
 	return r.constant
+}
+
+// StructureRequest 返回结构请求的相关资源
+func (r *Resources) StructureRequest() *StructureRequestCallback {
+	return r.structureRequest
 }
