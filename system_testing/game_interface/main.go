@@ -25,6 +25,7 @@ func main() {
 	}()
 
 	SystemTestingCommands()
+	SystemTestingStructureRequest()
 	SystemTestingUUIDSafeString()
 	SystemTestingSetblock()
 	SystemTestingReplaceitem()

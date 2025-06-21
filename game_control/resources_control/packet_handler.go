@@ -55,6 +55,11 @@ func (r *Resources) handleCommandOutput(p *packet.CommandOutput) {
 	r.commands.onCommandOutput(p)
 }
 
+// structure request callback
+func (r *Resources) handleStructureTemplateDataResponse(p *packet.StructureTemplateDataResponse) {
+	r.structureRequest.onStructureTemplateDataResponse(p)
+}
+
 // heart beat response (netease pyrpc)
 func (r *Resources) handlePyRpc(p *packet.PyRpc) {
 	// prepare
@@ -203,6 +208,8 @@ func (r *Resources) handlePacket(pk packet.Packet) {
 		r.handleRespawn(p)
 	case *packet.CommandOutput:
 		r.handleCommandOutput(p)
+	case *packet.StructureTemplateDataResponse:
+		r.handleStructureTemplateDataResponse(p)
 	case *packet.PyRpc:
 		r.handlePyRpc(p)
 	case *packet.InventoryContent:
